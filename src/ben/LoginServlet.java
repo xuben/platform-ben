@@ -19,9 +19,20 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String uname = request.getParameter("uname");
 		String passwd = request.getParameter("passwd");
-		if(uname.equals("ben") && passwd.equals("ben"))
-		{
+		String authcode = request.getParameter("authcode");
+		//错误信息
+		String errorMsg;
+		Object rightAuthcode = request.getSession().getAttribute("authcode");
+		if(rightAuthcode == null || !rightAuthcode.toString().equalsIgnoreCase(authcode)){
+			//验证码错误
+			errorMsg = "error authcode";
+		}else if(uname.equals("ben") && passwd.equals("ben")){
+			//验证用户名密码
 			response.sendRedirect("welcome.html");
+			return;
+		}else{
+			//用户名密码错误
+			errorMsg = "error username or password";
 		}
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -36,9 +47,12 @@ public class LoginServlet extends HttpServlet {
 				+ "<br/>"
 				+ "password:<input type=\"password\" name=\"passwd\"/>"
 				+ "<br/>"
+				+ "authcode:<img src=\"authcode\"/>"
+				+ "<input type=\"text\" name=\"authcode\" style=\"width:80px;height:20px;\"/>"
+				+ "<br/>"
 				+ "<input type=\"submit\"/>"
 				+ "</form>"
-				+ "<font color=\"red\">error username or password</font>"
+				+ "<font color=\"red\">"+errorMsg+"</font>"
 				+ "</BODY></HTML>");
 	}
 }
