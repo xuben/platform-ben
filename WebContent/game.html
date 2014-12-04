@@ -11,7 +11,7 @@
 	function imgDown(event){
 		ctx.clearRect(0, 0, 500, 500);
 		var gameImg = event.currentTarget;
-		gameImg.scaleX = gameImg.scaleY = 2;
+		gameImg.scaleX = gameImg.scaleY = 1.1;
 		gameImg.render();
 	}
 	function imgUp(event){
@@ -31,8 +31,8 @@
 			img1.height = 128;
 			img1.hAlign = "center";
 			img1.vAlign = "center";
-			img1.addEventListener("mousedown", imgDown);
-			img1.addEventListener("mouseup", imgUp);
+			img1.addEventListener("mouseover", imgDown);
+			img1.addEventListener("mouseout", imgUp);
 			//img1.addEventListener("click", imgDown);
 			img1.load();
 		}
