@@ -1,7 +1,7 @@
 function idxof(arr, value){
 	var idx = -1;
 	if(arr){
-		for(var i in arr){
+		for(var i = 0;i < arr.length;i++){
 			if(arr[i] == value){
 				idx = i;
 				break;
@@ -72,7 +72,7 @@ function dispatchGlobalEventHelper(event, type, canvasX, canvasY){
 	eventObservers = globalEventsObservers[type];
 	if(eventObservers != undefined){
 		var gameObj;
-		for(var i in eventObservers){
+		for(var i = 0;i < eventObservers.length;i++){
 			gameObj = eventObservers[i];
 			if(type == "mouseover"){//处理mouseover事件
 				if(!gameObj.mouseOvered && gameObj.inBoundary(canvasX, canvasY)){
@@ -148,7 +148,7 @@ function dispatchEvent(event){
 	}
 	eventObservers = this.eventsObservers[type];
 	if(eventObservers != undefined){
-		for(var i in eventObservers){
+		for(var i = 0;i < eventObservers.length;i++){
 			eventObservers[i](event);
 		}
 	}
@@ -266,6 +266,7 @@ function loadImage(){
 function GameImage(src){
 	//GameObject.apply(this, arguments);
 	this.src = src;
+	//this.eventsObservers = {};
 }
 
 GameImage.prototype = new GameObject();
