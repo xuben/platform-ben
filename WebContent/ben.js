@@ -36,7 +36,7 @@ function CanvasMouseEvent(event, type, currentTarget, canvasX, canvasY){
 }
 
 function addGlobalEventObserver(type, obj){
-	eventObservers = globalEventsObservers[type];
+	var eventObservers = globalEventsObservers[type];
 	if(eventObservers == undefined){
 		eventObservers = [obj];
 		globalEventsObservers[type] = eventObservers;
@@ -46,7 +46,7 @@ function addGlobalEventObserver(type, obj){
 }
 
 function removeGlobalEventObserver(type, obj){
-	eventObservers = globalEventsObservers[type];
+	var eventObservers = globalEventsObservers[type];
 	if(eventObservers != undefined){
 		var idx = idxof(eventObservers, obj);
 		if(idx >= 0){
@@ -69,7 +69,7 @@ function dispatchGlobalEvent(event){
 }
 
 function dispatchGlobalEventHelper(event, type, canvasX, canvasY){
-	eventObservers = globalEventsObservers[type];
+	var eventObservers = globalEventsObservers[type];
 	if(eventObservers != undefined){
 		var gameObj;
 		for(var i = 0;i < eventObservers.length;i++){
@@ -115,7 +115,7 @@ function GameObject() {
 }
 
 function addEventListener(type, callback) {
-	eventObservers = this.eventsObservers[type];
+	var eventObservers = this.eventsObservers[type];
 	if(eventObservers == undefined){
 		eventObservers = [callback];
 		this.eventsObservers[type] = eventObservers;
@@ -127,7 +127,7 @@ function addEventListener(type, callback) {
 }
 
 function removeEventListener(type, callback){
-	eventObservers = this.eventsObservers[type];
+	var eventObservers = this.eventsObservers[type];
 	if(eventObservers != undefined){
 		var idx = idxof(eventObservers, callback);
 		if(idx >= 0){
@@ -146,7 +146,7 @@ function dispatchEvent(event){
 	}else if(type == "mouseout"){
 		this.mouseOvered = false;
 	}
-	eventObservers = this.eventsObservers[type];
+	var eventObservers = this.eventsObservers[type];
 	if(eventObservers != undefined){
 		for(var i = 0;i < eventObservers.length;i++){
 			eventObservers[i](event);
