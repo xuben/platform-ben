@@ -264,9 +264,8 @@ function loadImage(){
 }
 
 function GameImage(src){
-	//GameObject.apply(this, arguments);
+	GameObject.apply(this, []]);
 	this.src = src;
-	//this.eventsObservers = {};
 }
 
 GameImage.prototype = new GameObject();
