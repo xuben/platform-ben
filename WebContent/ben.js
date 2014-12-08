@@ -264,7 +264,7 @@ function loadImage(){
 }
 
 function GameImage(src){
-	GameObject.apply(this, []]);
+	GameObject.apply(this, []);
 	this.src = src;
 }
 
