@@ -16,7 +16,7 @@ if(session != null){
 if(login != null && login == true){//已登录
 	response.sendRedirect("welcome.html");
 }else{//未登录
-	response.sendRedirect("login.html");
+	response.sendRedirect("login.jsp");
 }
 %>
 </body>

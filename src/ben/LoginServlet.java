@@ -1,7 +1,6 @@
 package ben;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.commons.lang3.StringEscapeUtils;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -21,44 +18,31 @@ public class LoginServlet extends HttpServlet {
 		String uname = request.getParameter("uname");
 		String passwd = request.getParameter("passwd");
 		String authcode = request.getParameter("authcode");
+		HttpSession session = request.getSession();
 		//错误信息
-		String errorMsg;
+		int errorCode = 0;
 		Object rightAuthcode = request.getSession().getAttribute("authcode");
 		if(rightAuthcode == null || !rightAuthcode.toString().equalsIgnoreCase(authcode)){
 			//验证码错误
-			errorMsg = "error authcode";
+			errorCode = ServletUtil.ERROR_LOGIN_AUTHCODE;
 		}else if(uname.equals("ben") && passwd.equals("ben")){//验证用户名密码
+		}else{//用户名密码错误
+			errorCode = ServletUtil.ERROR_LOGIN_VALIDATION;
+		}
+		//设置错误码和用户名
+		if(session != null){
+			session.setAttribute("errorCode", errorCode);
+			session.setAttribute("uname", uname);
+		}
+		//登录错误,需要重新登录
+		if(errorCode > 0){
+			response.sendRedirect("login.jsp");
+		}else{
 			//设置登录状态
-			HttpSession session = request.getSession();
 			if(session != null){
 				session.setAttribute("login", true);
 			}
-			
 			response.sendRedirect("welcome.html");
-			return;
-		}else{//用户名密码错误
-			errorMsg = "error username or password";
 		}
-		
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		String title = "login";
-		out.println("<HTML>\n" + "<HEAD><TITLE>" + title
-				+ "</TITLE></HEAD>\n" + "<BODY>\n"
-				+ "<form action=\"login\" method=\"post\">\n"
-				+ "username:<input type=\"text\" name=\"uname\" value=\""
-				//html encoding
-				+ StringEscapeUtils.escapeHtml4(uname)
-				+"\"/>\n"
-				+ "<br/>"
-				+ "password:<input type=\"password\" name=\"passwd\"/>"
-				+ "<br/>"
-				+ "authcode:<img src=\"authcode\"/>"
-				+ "<input type=\"text\" name=\"authcode\" style=\"width:80px;height:20px;\"/>"
-				+ "<br/>"
-				+ "<input type=\"submit\"/>"
-				+ "</form>"
-				+ "<font color=\"red\">"+errorMsg+"</font>"
-				+ "</BODY></HTML>");
 	}
 }
