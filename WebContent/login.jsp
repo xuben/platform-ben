@@ -2,6 +2,7 @@
 <%@page import="ben.ServletUtil"%>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="ben.css"/>
 <meta charset="UTF-8">
 <title>login</title>
 </head>
@@ -25,5 +26,6 @@ if(errorCode > 0){
 	out.println("<font color=\"red\">"+errorMsg+"</font>");
 }
 %>
+<jsp:include page="/WEB-INF/foot.jsp"></jsp:include>
 </body>
 </html>
