@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ben.bean.User;
+
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
@@ -40,9 +42,12 @@ public class LoginServlet extends HttpServlet {
 		}else{
 			//设置登录状态
 			if(session != null){
+				User user = new User();
+				user.setName(uname);
+				session.setAttribute("user", user);
 				session.setAttribute("login", true);
 			}
-			response.sendRedirect("welcome.html");
+			response.sendRedirect("welcome.jsp");
 		}
 	}
 }

@@ -5,7 +5,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-welcome to my platform!
+<jsp:useBean id="user" class="ben.bean.User" scope="session"></jsp:useBean>
+welcome, <jsp:getProperty property="name" name="user"/>!
 <br/>
 <a href="compressed">get compressed data</a>
 <br/>

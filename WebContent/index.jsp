@@ -14,7 +14,7 @@ if(session != null){
 	login = (Boolean)session.getAttribute("login");
 }
 if(login != null && login == true){//已登录
-	response.sendRedirect("welcome.html");
+	response.sendRedirect("welcome.jsp");
 }else{//未登录
 	response.sendRedirect("login.jsp");
 }
