@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="ben.ServletUtil"%>
+<%@page import="ben.Constants, ben.ServletUtil"%>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="ben.css"/>
@@ -26,6 +26,6 @@ if(errorCode > 0){
 	out.println("<font color=\"red\">"+errorMsg+"</font>");
 }
 %>
-<jsp:include page="/WEB-INF/foot.jsp"></jsp:include>
+<jsp:include page="<%= Constants.URL_FOOT_PAGE %>"></jsp:include>
 </body>
 </html>

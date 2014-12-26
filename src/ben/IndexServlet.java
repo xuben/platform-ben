@@ -23,9 +23,9 @@ public class IndexServlet extends HttpServlet {
 		}
 		
 		if(login != null && login == true){//已登录
-			response.sendRedirect("welcome.html");
+			response.sendRedirect(Constants.URL_WELCOME_PAGE);
 		}else{//未登录
-			response.sendRedirect("login.jsp");
+			response.sendRedirect(Constants.URL_LOGIN_PAGE);
 		}
 	}
 }

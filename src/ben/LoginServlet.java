@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		//登录错误,需要重新登录
 		if(errorCode > 0){
-			response.sendRedirect("login.jsp");
+			response.sendRedirect(Constants.URL_LOGIN_PAGE);
 		}else{
 			//设置登录状态
 			if(session != null){
@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("user", user);
 				session.setAttribute("login", true);
 			}
-			response.sendRedirect("welcome.jsp");
+			response.sendRedirect(Constants.URL_WELCOME_PAGE);
 		}
 	}
 }

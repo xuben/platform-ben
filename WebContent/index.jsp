@@ -1,3 +1,4 @@
+<%@page import="ben.Constants"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,9 +15,9 @@ if(session != null){
 	login = (Boolean)session.getAttribute("login");
 }
 if(login != null && login == true){//已登录
-	response.sendRedirect("welcome.jsp");
+	response.sendRedirect(Constants.URL_WELCOME_PAGE);
 }else{//未登录
-	response.sendRedirect("login.jsp");
+	response.sendRedirect(Constants.URL_LOGIN_PAGE);
 }
 %>
 </body>
