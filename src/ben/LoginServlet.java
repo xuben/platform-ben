@@ -2,6 +2,7 @@ package ben;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,12 @@ import ben.bean.User;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
+	@Override
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.sendRedirect(Constants.URL_ROOT_PAGE);
+	}
+	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -31,23 +38,21 @@ public class LoginServlet extends HttpServlet {
 		}else{//用户名密码错误
 			errorCode = ServletUtil.ERROR_LOGIN_VALIDATION;
 		}
-		//设置错误码和用户名
-		if(session != null){
-			session.setAttribute("errorCode", errorCode);
-			session.setAttribute("uname", uname);
-		}
 		//登录错误,需要重新登录
 		if(errorCode > 0){
-			response.sendRedirect(Constants.URL_LOGIN_PAGE);
+			//设置错误信息
+			request.setAttribute("uname", uname);
+			request.setAttribute("errorMsg", ServletUtil.getErrorMsg(errorCode));
+			RequestDispatcher dispatcher = request.getRequestDispatcher(Constants.URL_LOGIN_PAGE);
+			dispatcher.forward(request, response);
 		}else{
 			//设置登录状态
 			if(session != null){
 				User user = new User();
 				user.setName(uname);
 				session.setAttribute("user", user);
-				session.setAttribute("login", true);
 			}
-			response.sendRedirect(Constants.URL_WELCOME_PAGE);
+			response.sendRedirect(Constants.URL_ROOT_PAGE);
 		}
 	}
 }

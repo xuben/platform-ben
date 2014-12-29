@@ -7,6 +7,8 @@ import org.apache.commons.lang3.StringEscapeUtils;
 
 public class ServletUtil {
 
+	//无错误
+	public static final int NO_ERROR = 0;
 	//登录-用户名密码错误
 	public static final int ERROR_LOGIN_VALIDATION = 1;
 	//登录-验证码错误
@@ -57,6 +59,8 @@ public class ServletUtil {
 	public static String getErrorMsg(int errorCode){
 		String errorMsg = "";
 		switch(errorCode){
+			case NO_ERROR:
+				break;
 			case ERROR_LOGIN_VALIDATION:
 				errorMsg = "error username or password";
 				break;

@@ -1,6 +1,8 @@
 package ben;
 
 public class Constants {
+	//url-主页
+	public static final String URL_ROOT_PAGE = "";
 	//url-欢迎页
 	public static final String URL_WELCOME_PAGE = "welcome.jsp";
 	//url-登录页

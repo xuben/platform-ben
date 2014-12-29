@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="ben.Constants, ben.ServletUtil"%>
+<%@page import="ben.Constants"%>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="ben.css"/>
@@ -8,9 +8,7 @@
 </head>
 <body>
 <form action="login" method="post">
-username:<input type="text" name="uname" 
-value="<%=ServletUtil.getSessionAttributeWidthDefault(session, "uname", "") %>"
-/>
+username:<input type="text" name="uname" value="${uname }"/>
 <br/>
 password:<input type="password" name="passwd"/>
 <br/>
@@ -19,13 +17,7 @@ authcode:<img src="authcode"/>
 <br/>
 <input type="submit"/>
 </form>
-<% 
-int errorCode = ServletUtil.getSessionIntAttributeWidthDefault(session, "errorCode", 0);
-if(errorCode > 0){
-	String errorMsg = ServletUtil.getErrorMsg(errorCode);
-	out.println("<font color=\"red\">"+errorMsg+"</font>");
-}
-%>
+<font color="red">${errorMsg }</font>
 <jsp:include page="<%= Constants.URL_FOOT_PAGE %>"></jsp:include>
 </body>
 </html>

@@ -1,15 +1,20 @@
+<%@page import="ben.Constants"%>
+<%@page pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="ben.css"/>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>welcome</title>
 </head>
 <body>
-<jsp:useBean id="user" class="ben.bean.User" scope="session"></jsp:useBean>
-welcome, <jsp:getProperty property="name" name="user"/>!
+welcome, ${ user.name }!
 <br/>
 <a href="compressed">get compressed data</a>
 <br/>
 <a href="compressed?disableGzip=true">get uncompressed data</a>
+<br/>
+<a href="logout">退出</a>
+<jsp:include page="<%= Constants.URL_FOOT_PAGE %>"></jsp:include>
 </body>
 </html>
