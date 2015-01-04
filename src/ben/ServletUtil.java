@@ -13,6 +13,10 @@ public class ServletUtil {
 	public static final int ERROR_LOGIN_VALIDATION = 1;
 	//登录-验证码错误
 	public static final int ERROR_LOGIN_AUTHCODE = 2;
+	//注册-非法输入
+	public static final int ERROR_SIGNUP_INVALID_INPUT = 3;
+	//注册-密码输入不一致
+	public static final int ERROR_SINGUP_PASSWORD_INCONSISTENT = 4;
 	
 	public static String getParameterWithDefault(HttpServletRequest request,
 			String name, String defaultValue) {
@@ -54,6 +58,13 @@ public class ServletUtil {
 	}
 	
 	/**
+	 * 检查是否合法输入
+	 */
+	public static boolean isInvalidInput(String input){
+		return input != null && !input.trim().equals("");
+	}
+	
+	/**
 	 * 返回错误信息
 	 */
 	public static String getErrorMsg(int errorCode){
@@ -66,6 +77,12 @@ public class ServletUtil {
 				break;
 			case ERROR_LOGIN_AUTHCODE:
 				errorMsg = "error authcode";
+				break;
+			case ERROR_SIGNUP_INVALID_INPUT:
+				errorMsg = "invalid input";
+				break;
+			case ERROR_SINGUP_PASSWORD_INCONSISTENT:
+				errorMsg = "password not consistent";
 				break;
 			default:
 				errorMsg = "unknown error";
