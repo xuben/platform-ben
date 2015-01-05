@@ -13,4 +13,7 @@ public class Constants {
 	public static final String URL_SIGNUP_SUCCESS_PAGE = "signup-success.jsp";
 	//url-底部
 	public static final String URL_FOOT_PAGE = "/WEB-INF/foot.jsp";
+	
+	//url-时光机 任务列表
+	public static final String URL_TIME_MACHINE_TASKS_PAGE = "tasks.jsp";
 }
