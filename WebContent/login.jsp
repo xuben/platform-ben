@@ -15,7 +15,7 @@ password:<input type="password" name="passwd"/>
 <br/>
 authcode:<img src="authcode"/>
 <input type="text" name="authcode" style="width:80px;height:20px;"/>
-<br/>
+<br/><br/>
 <input type="submit" value="login"/>
 <input type="button" value="signup" onclick="window.location.href='<%= Constants.URL_SIGNUP_PAGE %>'"/>
 </form>
