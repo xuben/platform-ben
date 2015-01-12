@@ -58,10 +58,10 @@ public class ServletUtil {
 	}
 	
 	/**
-	 * 检查是否合法输入
+	 * 检查是否非法输入
 	 */
 	public static boolean isInvalidInput(String input){
-		return input != null && !input.trim().equals("");
+		return input == null || input.trim().equals("");
 	}
 	
 	/**

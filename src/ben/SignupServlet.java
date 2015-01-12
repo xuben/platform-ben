@@ -28,8 +28,8 @@ public class SignupServlet extends HttpServlet{
 		String password2 = request.getParameter("passwd2");
 		String email = request.getParameter("email");
 		int errorCode = 0;
-		if(!ServletUtil.isInvalidInput(uname) || !ServletUtil.isInvalidInput(password) 
-				|| !ServletUtil.isInvalidInput(password2) || !ServletUtil.isInvalidInput(email)){
+		if(ServletUtil.isInvalidInput(uname) || ServletUtil.isInvalidInput(password) 
+				|| ServletUtil.isInvalidInput(password2) || ServletUtil.isInvalidInput(email)){
 			errorCode = ServletUtil.ERROR_SIGNUP_INVALID_INPUT;
 		}else if(!password.equals(password2)){
 			errorCode = ServletUtil.ERROR_SINGUP_PASSWORD_INCONSISTENT;

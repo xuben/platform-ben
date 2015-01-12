@@ -145,8 +145,8 @@ function Table(model){
 	this.item = document.createElement("table");
 	this.model = model;
 	this.setData = setTableData;
+	this.addRowData = addTableRowData;
 	this.load = loadTableData;
-	this.item.appendChild(model.item);
 	document.body.appendChild(this.item);
 }
 
@@ -169,9 +169,9 @@ function loadTableData(src){
 }
 
 /**
- * 设置表格数据
+ * 添加行数据
  */
-function setTableData(data){
+function addTableRowData(data){
 	var modelData = this.model.modelData;
 	if(data && modelData){
 		for(var i = 0;i < data.length;i++){
@@ -185,4 +185,21 @@ function setTableData(data){
 			this.item.appendChild(row.item);
 		}
 	}
+}
+
+/**
+ * 设置表格数据
+ */
+function setTableData(data){
+	//首先清除旧数据
+	var childs = this.item.childNodes;
+	for(var i = childs.length - 1;i >= 0;i--){
+		this.item.removeChild(childs[i]);
+	}
+	//添加表头
+	if(this.model){
+		this.item.appendChild(this.model.item);
+	}
+	//添加表格内容
+	this.addRowData(data);
 }

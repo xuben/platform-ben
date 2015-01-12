@@ -1,5 +1,6 @@
 package ben.timemachine.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,11 +8,13 @@ import java.util.Date;
  * @author xuben
  *
  */
-public class Task {
+public class Task implements Serializable{
 	//任务时间
 	private Date date;
 	//任务名
 	private String name;
+	//子任务名
+	private String subName;
 	//任务信息
 	private String info;
 	//任务类型
@@ -35,6 +38,14 @@ public class Task {
 		this.name = name;
 	}
 	
+	public String getSubName() {
+		return subName;
+	}
+
+	public void setSubName(String subName) {
+		this.subName = subName;
+	}
+
 	public String getInfo() {
 		return info;
 	}
