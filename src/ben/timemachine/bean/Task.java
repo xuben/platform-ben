@@ -9,6 +9,9 @@ import java.util.Date;
  *
  */
 public class Task implements Serializable{
+	
+	//任务id
+	private long id;
 	//任务时间
 	private Date date;
 	//任务名
@@ -22,6 +25,25 @@ public class Task implements Serializable{
 	//任务状态
 	private int state;
 	
+	//当前任务id
+	private static Long currentId = 0l;
+	
+	public Task(){
+		super();
+		synchronized (currentId) {
+			currentId++;
+			setId(currentId);
+		}
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public Date getDate() {
 		return date;
 	}
